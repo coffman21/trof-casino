@@ -14,9 +14,24 @@ public class Container {
     private static final List<String> colors =
             Arrays.asList("White", "Red", "Blue", "Green", "Blvck");
 
-    private void fill(int n) {
+
+    private ArrayList<Integer> distributedRandomGenerator(double[] chances) {
+        for (double i : chances) {
+             i*=100;
+        }
+        ArrayList<Integer> distribution = new ArrayList<Integer>(100);
+        for (int i = 0; i < chances.length; i++) {
+            for (int j = 0; j < (int) chances[i]; j++) {
+                distribution.add(i);
+            }
+        }
+        return distribution;
+    }
+
+    private void fill(int n, double[] chances) {
+        ArrayList<Integer> distr = distributedRandomGenerator(chances);
         for(int i = 0; i < n; i++) {
-            list.add(i, colors.get((int) (Math.random() * colors.size())));
+            list.add(i, colors.get((int) (Math.random() * (distr.size()))));
         }
         // list sorting allows us to work with class methods more easily
         Collections.sort(list);
@@ -29,16 +44,16 @@ public class Container {
     // default constructor:
     Container() {
         // append 10 random items to list from colors
-        fill(10);
+        fill(10, new double[] {0.2, 0.2, 0.2, 0.2, 0.2});
     }
     // init constructor:
-    Container(int len, String... s) {
+    Container(int len, double[] chances, String... s) {
         for (String ball : s) {
                 list.add(ball);
             Collections.sort(list);
         }
         if (s.length < len) {
-            fill(len-s.length);
+            fill(len-s.length, chances);
         }
     }
 
@@ -149,5 +164,14 @@ public class Container {
     //clear:
     public void clear() {
         this.list = new ArrayList(0);
+    }
+
+    public String getBall (int i) {
+        String ball = list.get(i);
+        list.remove(ball);
+        return ball;
+    }
+    public void putBall (String ball) {
+        list.add(ball);
     }
 }

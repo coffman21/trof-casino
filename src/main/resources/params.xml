@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Params>
+    <Distribution>
+        <d>0.5</d>
+        <d>0.25</d>
+        <d>0.15</d>
+        <d>0.07</d>
+        <d>0.03</d>
+    </Distribution>
+    <Combs>
+        <Comb Name="Jackpot">
+            <c>Blue</c>
+            <c>Blue</c>
+            <c>Blue</c>
+        </Comb>
+    </Combs>
+</Params>
