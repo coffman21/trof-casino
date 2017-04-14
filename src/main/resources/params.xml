@@ -8,10 +8,20 @@
         <d>0.03</d>
     </Distribution>
     <Combs>
-        <Comb Name="Jackpot">
+        <Comb Name="Jackpot" Value="99999999">
+            <c>Blvck</c>
+            <c>Blvck</c>
+            <c>Blvck</c>
+        </Comb>
+        <Comb Name="Yank" Value="1000">
+            <c>White</c>
+            <c>White</c>
+            <c>White</c>
+        </Comb>
+        <Comb Name="Snatch" Value="100000">
+            <c>Red</c>
             <c>Blue</c>
-            <c>Blue</c>
-            <c>Blue</c>
+            <c>White</c>
         </Comb>
     </Combs>
 </Params>

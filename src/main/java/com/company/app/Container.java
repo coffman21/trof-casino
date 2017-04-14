@@ -15,23 +15,20 @@ public class Container {
             Arrays.asList("White", "Red", "Blue", "Green", "Blvck");
 
 
-    private ArrayList<Integer> distributedRandomGenerator(double[] chances) {
-        for (double i : chances) {
-             i*=100;
-        }
+    private ArrayList<Integer> distributedRandomGenerator(ArrayList<Double> chances) {
         ArrayList<Integer> distribution = new ArrayList<Integer>(100);
-        for (int i = 0; i < chances.length; i++) {
-            for (int j = 0; j < (int) chances[i]; j++) {
+        for (int i = 0; i < chances.size(); i++) {
+            for (int j = 0; j < Math.round(chances.get(i)*100); j++) {
                 distribution.add(i);
             }
         }
         return distribution;
     }
 
-    private void fill(int n, double[] chances) {
+    private void fill(int n, ArrayList chances) {
         ArrayList<Integer> distr = distributedRandomGenerator(chances);
         for(int i = 0; i < n; i++) {
-            list.add(i, colors.get((int) (Math.random() * (distr.size()))));
+            list.add(i, colors.get(distr.get((int)(Math.random()* (distr.size())))));
         }
         // list sorting allows us to work with class methods more easily
         Collections.sort(list);
@@ -44,10 +41,11 @@ public class Container {
     // default constructor:
     Container() {
         // append 10 random items to list from colors
-        fill(10, new double[] {0.2, 0.2, 0.2, 0.2, 0.2});
+        double[] arr = {0.2, 0.2, 0.2, 0.2, 0.2};
+        fill(10, new ArrayList<>((ArrayList) Arrays.asList(arr)));
     }
     // init constructor:
-    Container(int len, double[] chances, String... s) {
+    Container(int len, ArrayList<Double> chances, String... s) {
         for (String ball : s) {
                 list.add(ball);
             Collections.sort(list);
@@ -75,8 +73,8 @@ public class Container {
     // actions before an instance will be deleted by GC.
 
     protected void finalize() {
-        System.out.println("Instance of Container class: " + this.getList() +
-                " is going to be deleted");
+        //System.out.println("Instance of Container class: " + this.getList() +
+         //       " is going to be deleted");
     }
 
     // operator overloading is not allowed in java as it may cause to
