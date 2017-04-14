@@ -87,8 +87,6 @@ public class XmlDomObj {
                 }
             }
         }
-        // else parent is a root node, therefore appending to it.
-
         Element child = document.createElement(elemName);
         for (int i = 0; i < attrsNames.size(); i++) {
             child.setAttribute(attrsNames.get(i), attrsValues.get(i));
